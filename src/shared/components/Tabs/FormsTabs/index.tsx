@@ -1,0 +1,1 @@
+export { FormsTabs } from './FormsTabs';

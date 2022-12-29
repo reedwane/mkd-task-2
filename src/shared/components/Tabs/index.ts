@@ -4,3 +4,4 @@ export { MobileProjectsTabs } from './ProjectsTabs';
 export { TabContent } from './TabContent';
 export { ProjectTabMenu } from './ProjectTabMenu';
 export { ProjectsTabMenu } from './ProjectsTabMenu';
+export { FormsTabs } from './FormsTabs';
