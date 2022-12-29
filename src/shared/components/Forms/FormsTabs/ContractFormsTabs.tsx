@@ -5,7 +5,7 @@ import { PurpleButton } from 'Components/Button/PurpleButton';
 
 import { areEqual } from 'Utils/equalityChecks';
 
-import { Table, TableBody, TableColumn, TableHeader, TableRow } from 'Components/Table';
+import { Table, TableBody, TableColumn, TableHeader, TableHeadItem, TableRow } from 'Components/Table';
 import { Icon } from 'Components/Icons';
 import { formatDate } from 'Utils/helpers';
 import { Modal } from 'Components/Modal';
@@ -59,9 +59,19 @@ const ContractFormsTab = ({ forms, fetching }: Props) => {
       {!fetching && forms ? (
         <Table className={classes.table}>
           <TableHeader>
-            {['TEMPLATE NAME', 'DATE CREATED', ''].map((head: any) => (
-              <TableColumn key={`${head} head`}>{head}</TableColumn>
-            ))}
+            <TableRow>
+              {['TEMPLATE NAME', 'DATE CREATED', ''].map((head: any) => (
+                <TableHeadItem
+                  displayName={head}
+                  column={head}
+                  canSort={false}
+                  sortBy=""
+                  action={false}
+                  onClick={() => {}}
+                  key={`${head} head`}
+                />
+              ))}
+            </TableRow>
           </TableHeader>
 
           <TableBody>
