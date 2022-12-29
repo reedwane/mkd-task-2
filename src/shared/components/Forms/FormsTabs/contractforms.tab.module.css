@@ -28,6 +28,38 @@
   margin-left: 2.4rem;
 }
 
+.table {
+  width: 100%;
+}
+
+.table tr {
+  border-bottom: 1px solid #000000;
+}
+
+.table tr td:first-of-type,
+.table thead td:first-of-type {
+  padding-left: 10%;
+}
+
+.table thead td:last-of-type,
+.table tr td:last-of-type {
+  padding-right: 10%;
+}
+
+.name,
+.date,
+.delete {
+  padding: 0.5rem 0 0.5rem;
+}
+
+.name {
+  width: 55%;
+}
+
+.delete {
+  width: 25%;
+}
+
 .modalButtons {
   display: flex;
   align-items: center;

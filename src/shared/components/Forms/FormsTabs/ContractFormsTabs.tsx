@@ -11,17 +11,16 @@ import { formatDate } from 'Utils/helpers';
 import { Modal } from 'Components/Modal';
 import { Api } from 'Utils/api';
 import classes from './contractforms.tab.module.css';
+import { AddForm } from './AddFormModal';
 
 interface Props {
   forms?: any;
-  //   totalEmployees: number;
   fetching?: boolean;
-  //   selectCardClick: (employee: any) => void;
-  //   onButtonClick: (e: any) => void;
 }
 
 const ContractFormsTab = ({ forms, fetching }: Props) => {
   const [openModal, setOpenModal] = React.useState(false);
+  const [openForm, setOpenForm] = React.useState(false);
   const [formInProcess, setFormInProcess] = React.useState<any>();
 
   const handleDelete = (form: any) => {
@@ -52,13 +51,13 @@ const ContractFormsTab = ({ forms, fetching }: Props) => {
     <div className={classes.employeesContent}>
       <div className={`d-flex justify-content-start align-items-center ${classes.contentHeader}`}>
         <h2>Form Templates</h2>
-        <PurpleButton className={classes.inviteButton} onClick={() => {}}>
+        <PurpleButton className={classes.inviteButton} onClick={() => setOpenForm(true)}>
           Add +
         </PurpleButton>
       </div>
       {fetching ? <Spinner loading /> : null}
       {!fetching && forms ? (
-        <Table>
+        <Table className={classes.table}>
           <TableHeader>
             {['TEMPLATE NAME', 'DATE CREATED', ''].map((head: any) => (
               <TableColumn key={`${head} head`}>{head}</TableColumn>
@@ -68,9 +67,9 @@ const ContractFormsTab = ({ forms, fetching }: Props) => {
           <TableBody>
             {forms?.map((form: any) => (
               <TableRow key={form.name}>
-                <TableColumn>{form.name}</TableColumn>
-                <TableColumn>{formatDate(form.created_at, 'mmm d, yyy')}</TableColumn>
-                <TableColumn onClick={() => handleDelete(form)}>
+                <TableColumn className={`${classes.name}`}>{form.name}</TableColumn>
+                <TableColumn className={`${classes.date}`}>{formatDate(form.created_at, 'mmm d, yyy')}</TableColumn>
+                <TableColumn className={`${classes.delete}`} onClick={() => handleDelete(form)}>
                   <Icon type="trash" />
                 </TableColumn>
               </TableRow>
@@ -79,21 +78,23 @@ const ContractFormsTab = ({ forms, fetching }: Props) => {
         </Table>
       ) : null}
 
+      <AddForm isOpen={openForm} setIsOpen={() => setOpenForm} />
+
       <Modal
         modalHeader
         title="Delete Contract Form"
         isOpen={openModal}
         setIsOpen={() => setOpenModal(false)}
-        leftHeaderIcon="project"
+        leftHeaderIcon="projects"
         closeButtonText="Cancel"
       >
-        <p>Are you sure you want to delete this Form?</p>
+        <p className="text-center">Are you sure you want to delete this Form?</p>
 
-        <div className={`${classes.modalButtons}`}>
-          <button className="btn btn-danger outline" onClick={handleConfirmDelete}>
+        <div className={`${classes.modalButtons} mt-9`}>
+          <button className="btn btn-outline-danger" onClick={handleConfirmDelete}>
             Delete
           </button>
-          <button className="btn btn-primary outline" onClick={handleCloseModal}>
+          <button className="btn btn-outline-primary" onClick={handleCloseModal}>
             Cancel
           </button>
         </div>
