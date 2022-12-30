@@ -1,0 +1,66 @@
+.modalDialog {
+  max-width: 90%;
+}
+
+.modalContent {
+  height: 90vh;
+}
+
+.header {
+  margin-bottom: 3rem;
+}
+
+.IconName {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 1rem;
+}
+
+.IconName p {
+  margin-bottom: 0;
+}
+
+.title {
+  color: #9a00ff;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.formNameGroup,
+.signatureGroup {
+  margin-bottom: 2rem;
+}
+
+.formNameGroup label,
+.formNameGroup input {
+  width: 100%;
+}
+
+.formNameGroup input {
+  text-indent: 1rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.form input {
+  width: 50%;
+  text-indent: 1rem;
+}
+
+.submitButton {
+  width: 200px;
+  display: inline-block;
+  outline: none;
+  color: white;
+  background-color: #9a00ff;
+}
+
+.submitButton:hover {
+  color: white;
+}

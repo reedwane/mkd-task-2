@@ -33,15 +33,15 @@
 }
 
 .table tr {
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #dee2e6;
 }
 
 .table tr td:first-of-type,
-.table thead td:first-of-type {
+.table thead th:first-of-type {
   padding-left: 10%;
 }
 
-.table thead td:last-of-type,
+.table thead th:last-of-type,
 .table tr td:last-of-type {
   padding-right: 10%;
 }
