@@ -66,12 +66,12 @@
 
 .template {
   width: 80%;
-  min-height: 900px;
+  min-height: 700px;
   padding: 1rem;
 }
 
 .submitButton {
-  width: 200px;
+  width: 300px;
   display: inline-block;
   outline: none;
   color: white;
