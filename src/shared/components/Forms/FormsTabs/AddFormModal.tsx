@@ -22,35 +22,31 @@ const AddForm = ({ isOpen, setIsOpen, fetchForms }: Props) => {
   const [requireSignature, setRequireSignature] = React.useState(true);
   const [adding, setAdding] = React.useState(false);
   const [template, setTemplate] = React.useState('');
-  const [tag, setTag] = React.useState('');
 
   const onSubmitForm = async (e: React.FormEvent) => {
     e?.preventDefault();
 
-    if (name && template && tag) {
-      try {
-        setAdding(true);
-        await Api.post('/contract-forms', {
-          company_id: companyId,
-          name,
-          replacement_tags: tag,
-          status: 'active',
-          template,
-          has_signature: requireSignature,
-        });
+    try {
+      setAdding(true);
+      await Api.post('/contract-forms', {
+        company_id: companyId,
+        name,
+        replacement_tags: 'test-tag',
+        status: 'active',
+        template,
+        has_signature: requireSignature,
+      });
 
-        setName('');
-        setTemplate('');
-        setTag('');
-        setIsOpen(false);
+      setName('');
+      setTemplate('');
+      setIsOpen(false);
 
-        fetchForms();
-      } catch (error: any) {
-        // eslint-disable-next-line
-        console.log(error.message);
-      } finally {
-        setAdding(false);
-      }
+      fetchForms();
+    } catch (error: any) {
+      // eslint-disable-next-line
+      console.log(error.message);
+    } finally {
+      setAdding(false);
     }
   };
 
@@ -73,25 +69,62 @@ const AddForm = ({ isOpen, setIsOpen, fetchForms }: Props) => {
           <Icon type="close" onClick={() => setIsOpen(false)} />
         </div>
 
-        <div className={`${classes.formNameGroup}`}>
-          <label htmlFor="form-name">Form Name</label>
-          <input type="text" name="form-name" value="Authorization Form" disabled />
-        </div>
-
-        <div className={`${classes.signatureGroup}`}>
-          <label htmlFor="">Require Signature</label>
-          <CheckBox
-            onChange={() => setRequireSignature(!requireSignature)}
-            checked={requireSignature}
-            className={`${classes.requireSign}`}
-          />
-        </div>
-
         <form onSubmit={onSubmitForm} className={`${classes.form}`}>
-          <input type="text" placeholder="Name" value={name} onChange={(e) => setName(e.target.value)} />
-          <input type="text" placeholder="template" value={template} onChange={(e) => setTemplate(e.target.value)} />
-          <input type="text" placeholder="replacement tag" value={tag} onChange={(e) => setTag(e.target.value)} />
-          <button className={`btn ${classes.submitButton}`} onClick={onSubmitForm} disabled={adding}>
+          <div className={`${classes.formNameGroup}`}>
+            <label htmlFor="form-name" className="d-block">
+              Form Name
+            </label>
+            <input
+              type="text"
+              name="form-name"
+              placeholder="Authorization Form"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+          </div>
+
+          <div className={`${classes.signatureGroup}`}>
+            <label htmlFor="">Require Signature</label>
+            <CheckBox
+              onChange={() => setRequireSignature(!requireSignature)}
+              checked={requireSignature}
+              className={`${classes.requireSign}`}
+            />
+          </div>
+
+          <div className={`${classes.templateGroup}`}>
+            <label htmlFor="template" className="d-block">
+              Contract Template
+            </label>
+            <div className="d-flex align-items-start">
+              <div className={`${classes.tabs}`}>
+                <span>name</span>
+                <span>project</span>
+                <span>job_no</span>
+                <span>company</span>
+                <span>current_date</span>
+                <span>date_of_loss</span>
+                <span>company_address</span>
+                <span>policy_holder_name</span>
+                <span>policy_number</span>
+                <span>claim_number</span>
+                <span>input</span>
+                <span>checkbox</span>
+              </div>
+              <textarea
+                placeholder="template"
+                value={template}
+                onChange={(e) => setTemplate(e.target.value)}
+                className={`${classes.template}`}
+              />
+            </div>
+          </div>
+
+          <button
+            className={`btn ${classes.submitButton}`}
+            onClick={onSubmitForm}
+            disabled={adding || (!name && !template)}
+          >
             Add Contract
           </button>
         </form>

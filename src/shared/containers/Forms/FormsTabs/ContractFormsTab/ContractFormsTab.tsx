@@ -21,9 +21,6 @@ const ContractFormsTab: React.FunctionComponent<IContractFormsProps> = () => {
       const response = await Api.get(`/companies/${companyId}/contract-forms`);
       const data = response.data;
       setData(data.data);
-
-      // eslint-disable-next-line
-      console.log(data);
     } catch (error) {
       // eslint-disable-next-line
       console.log(error);

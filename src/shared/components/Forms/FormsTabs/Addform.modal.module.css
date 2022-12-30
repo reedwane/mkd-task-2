@@ -3,7 +3,7 @@
 }
 
 .modalContent {
-  height: 90vh;
+  min-height: 90vh;
 }
 
 .header {
@@ -22,14 +22,26 @@
 }
 
 .title {
-  color: #9a00ff;
   font-weight: bold;
   font-size: 1rem;
 }
 
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3rem;
+}
+
+.form input {
+  text-indent: 0.5rem;
+  border: 1px solid #dee2e6;
+}
+
 .formNameGroup,
-.signatureGroup {
-  margin-bottom: 2rem;
+.signatureGroup,
+.templateGroup {
+  width: 100%;
 }
 
 .formNameGroup label,
@@ -37,20 +49,25 @@
   width: 100%;
 }
 
-.formNameGroup input {
-  text-indent: 1rem;
+.tabs,
+.template {
+  border: 1px solid #dee2e6;
+  display: inline-block;
 }
 
-.form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
+.tabs {
+  width: 20%;
+  padding-left: 1rem;
+  padding-bottom: 10rem;
+}
+.tabs span {
+  display: block;
 }
 
-.form input {
-  width: 50%;
-  text-indent: 1rem;
+.template {
+  width: 80%;
+  min-height: 900px;
+  padding: 1rem;
 }
 
 .submitButton {
